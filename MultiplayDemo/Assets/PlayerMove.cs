@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.Networking;
+using Unity.Netcode;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : NetworkBehaviour
 {
     [SerializeField] float speed = 5f;
     
@@ -11,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     }
 
     void Update(){
+        if (!IsLocalPlayer) return;
+        
         _rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, 0, Input.GetAxis("Vertical") * speed);
     }
 }
