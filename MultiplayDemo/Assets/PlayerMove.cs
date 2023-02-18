@@ -13,7 +13,7 @@ public class PlayerMove : NetworkBehaviour
     }
 
     void Update(){
-        if (!IsLocalPlayer) return;
+        if (!IsOwner) return;
         
         _rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, 0, Input.GetAxis("Vertical") * speed);
     }
