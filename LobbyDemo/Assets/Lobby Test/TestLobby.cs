@@ -119,8 +119,8 @@ public class TestLobby : MonoBehaviour
             QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync();
 
             Debug.Log("Lobbies: " + queryResponse.Results.Count);
-            foreach(Lobby lobby in queryResponse.Results){
-                Debug.Log(lobby.Name + " " + lobby.MaxPlayers + " " + lobby.Data["GameMode"].Value + " " + lobby.Data["Map"].Value);
+            foreach(Lobby l in queryResponse.Results){
+                Debug.Log(l.Name + " " + l.MaxPlayers + " " + l.Data["GameMode"].Value + " " + l.Data["Map"].Value);
             }
             Lobby lobby = await Lobbies.Instance.JoinLobbyByIdAsync(queryResponse.Results[0].Id, joinLobbyByIdOptions);
 
