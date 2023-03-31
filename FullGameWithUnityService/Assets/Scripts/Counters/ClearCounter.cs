@@ -29,7 +29,7 @@ public class ClearCounter : BaseCounter {
                 } else {
                     // Player несет не тарелку, а что-то другое
                     if (GetKitchenObject().TryGetPlate(out plateKitchenObject)) {
-                        // На стойке контейнер
+                        // На стойке тарелка
                         if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO())) {
                             player.GetKitchenObject().DestroySelf();
                         }
