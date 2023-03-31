@@ -21,6 +21,21 @@ public class ClearCounter : BaseCounter {
             // Когда имеет KitchenObject
             if (player.HasKitchenObject()) {
                 // Player несет что-то
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                    // Player несет тарелку
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
+                        GetKitchenObject().DestroySelf();
+                    }
+                } else {
+                    // Player несет не тарелку, а что-то другое
+                    if (GetKitchenObject().TryGetPlate(out plateKitchenObject)) {
+                        // На стойке контейнер
+                        if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO())) {
+                            player.GetKitchenObject().DestroySelf();
+                        }
+                         
+                    }
+                }
             } else {
                 // Player ничего не несет
                 GetKitchenObject().SetKitchenObjectParent(player);

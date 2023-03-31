@@ -123,6 +123,20 @@ public class StoveCounter : BaseCounter, IHasProgress {
             // Когда имеет KitchenObject
             if (player.HasKitchenObject()) {
                 // Player несет что-то
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                    // Player несет тарелку
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
+                        GetKitchenObject().DestroySelf();
+                    }
+
+                    GetKitchenObject().SetKitchenObjectParent(player);
+
+                    state = State.Idle;
+
+                    OnStateChange?.Invoke(this, new OnStateChangeEventArgs {
+                        state = state
+                    });
+                }
             } else {
                 // Player ничего не несет
                 GetKitchenObject().SetKitchenObjectParent(player);
