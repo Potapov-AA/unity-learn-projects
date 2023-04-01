@@ -22,7 +22,7 @@ public class PlateCompleteVisual : MonoBehaviour {
         plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredientAdded;
 
         foreach (KitchenObjectSO_GameObject kitchenObjectSOGameObject in kitchenObjectSOGameObjectsList) {
-                kitchenObjectSOGameObject.gameObject.SetActive(false);
+            kitchenObjectSOGameObject.gameObject.SetActive(false);
         }
     }
 
