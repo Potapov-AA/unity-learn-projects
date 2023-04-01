@@ -127,15 +127,17 @@ public class StoveCounter : BaseCounter, IHasProgress {
                     // Player несет тарелку
                     if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
                         GetKitchenObject().DestroySelf();
+
+                        state = State.Idle;
+
+                        OnStateChange?.Invoke(this, new OnStateChangeEventArgs {
+                            state = state
+                        });
+
+                        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                            progressNormalized = 0f
+                        });
                     }
-
-                    GetKitchenObject().SetKitchenObjectParent(player);
-
-                    state = State.Idle;
-
-                    OnStateChange?.Invoke(this, new OnStateChangeEventArgs {
-                        state = state
-                    });
                 }
             } else {
                 // Player ничего не несет
@@ -145,6 +147,10 @@ public class StoveCounter : BaseCounter, IHasProgress {
 
                 OnStateChange?.Invoke(this, new OnStateChangeEventArgs {
                     state = state
+                });
+
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                    progressNormalized = 0f
                 });
             }
         }
