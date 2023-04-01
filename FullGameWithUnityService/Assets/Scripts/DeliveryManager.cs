@@ -1,8 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class DeliveryManager : MonoBehaviour {
+
+
+    public event EventHandler  OnRecipeSpawned;
+    public event EventHandler  OnRecipeCompleted;
 
     public static DeliveryManager Instance { get; private set; }
 
@@ -27,9 +33,11 @@ public class DeliveryManager : MonoBehaviour {
             spwanRecipeTimer = spwanRecipeTimerMax;
 
             if (waitingRecipeSOList.Count <= waitingRecipeMax) {
-                RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[Random.Range(0, recipeListSO.recipeSOList.Count)];
-                Debug.Log(waitingRecipeSO.recipeName);
+                RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
+
                 waitingRecipeSOList.Add(waitingRecipeSO);
+
+                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
             }
         }
     }
@@ -37,11 +45,12 @@ public class DeliveryManager : MonoBehaviour {
     public void DeliveryRecipe(PlateKitchenObject plateKitchenObject) {
         for (int i=0; i < waitingRecipeSOList.Count; i++) {
             RecipeSO waitingRecipeSO = waitingRecipeSOList[i];
-            bool plateContentsMatchesRecipe = true;
+
             if (waitingRecipeSO.kitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count) {
                 // Одинаковое количество ингридиентов
-                bool ingridientFound = false;
+                bool plateContentsMatchesRecipe = true;
                 foreach (KitchenObjectSO recipeKitchenObjectSO in waitingRecipeSO.kitchenObjectSOList) {
+                    bool ingridientFound = false;
                     foreach (KitchenObjectSO plateKitchenObjectSO in plateKitchenObject.GetKitchenObjectSOList()) {
                         if (plateKitchenObjectSO == recipeKitchenObjectSO) {
                             ingridientFound = true;
@@ -54,15 +63,20 @@ public class DeliveryManager : MonoBehaviour {
                 }
 
                 if (plateContentsMatchesRecipe) {
-                    Debug.Log("Player delivered the correct recipe!");
+
                     waitingRecipeSOList.RemoveAt(i);
+
+                    OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
         }
 
         // Не найдено корректного рецепта
-        Debug.Log("Player did not delivered the correct recipe!");
     }
 
+
+    public List<RecipeSO> GetWaitingRecipeSOList() {
+        return waitingRecipeSOList;
+    }
 }
