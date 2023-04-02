@@ -7,6 +7,9 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParents {
 
     
     public static event EventHandler OnAnyObjectPlacedHere;
+    public static void ResetStaticData() {
+        OnAnyObjectPlacedHere = null;
+    }
 
     [SerializeField] private Transform counterTopPoint;
 
