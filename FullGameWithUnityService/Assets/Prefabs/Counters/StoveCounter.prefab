@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1156510047956307556}
   - component: {fileID: 4558473471364771242}
   - component: {fileID: 3387145889596900013}
+  - component: {fileID: 7591991220314655508}
+  - component: {fileID: 6759101320726426}
   m_Layer: 5
   m_Name: StoveBurnWaringUI
   m_TagString: Untagged
@@ -130,6 +132,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoveCounter: {fileID: 797447055710461817}
+--- !u!95 &7591991220314655508
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721864220300594560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0f630354f9fce74ab56ad3fee4bc29a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &6759101320726426
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721864220300594560}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5505232910240015384
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +683,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6762130573022340125, guid: bac19d3bfda17be47be2537132bce6e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1478549810688009159}
+    - targetCorrespondingSourceObject: {fileID: 6762130573022340125, guid: bac19d3bfda17be47be2537132bce6e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8766640154054604904}
   m_SourcePrefab: {fileID: 100100000, guid: bac19d3bfda17be47be2537132bce6e7, type: 3}
 --- !u!224 &3467820721415537024 stripped
 RectTransform:
@@ -656,6 +699,46 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1230917257650051351}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5531248638328519946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6762130573022340125, guid: bac19d3bfda17be47be2537132bce6e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1230917257650051351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1478549810688009159
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531248638328519946}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6abf19a679430124cab51cf03bdae9eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8766640154054604904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531248638328519946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e45af075ca7fa46851f0c3edeba32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoveCounter: {fileID: 797447055710461817}
 --- !u!1001 &1622374283718445681
 PrefabInstance:
   m_ObjectHideFlags: 0
